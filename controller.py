@@ -1,20 +1,26 @@
 from fuzzy_controller import FuzzyController
 
+# 2. Спроектуйте нечітку логічну систему (вхідні та результуючі лінгвістичні змінні, база правил, алгоритм нечіткого виведення, метод дефазифікації) 
+# для керування персонажем відеогри, який повинен уникати ворога.
+# При ухваленні рішення необхідно враховувати відстань до ворога, стан ворога (наближається, залишається на місці або віддаляється).
+# Персонаж при цьому може залишатися нерухомим, або повільно або швидко віддалятися від ворога.
+
 if __name__=="__main__":
-	S_max = 100	# max area
-	S_min = 20	# min area
-	D_max = 10	# max distance
-	F_max = 20	# max floors
 
-	my_controller = FuzzyController(S_max, S_min, F_max, D_max)
+	my_controller = FuzzyController()
 
-	my_area = 50
-	my_floor = 20
-	my_rank = 7
-	my_distance = 5
+	# Відстань до ворога від 1 до 5 (чим більше тим дальше)
+	distance = 5
 
-	crisp = [my_area, my_floor, my_rank, my_distance]
+	# Стан ворога від 1 до 5 (1 - ворог рухається до тебе, 3 - ворог стоїть на місці, 5 - ворог рухається від тебе)
+	enemy_condition = 5
 
+	# Небезпечність ворога від 1 дл 5 (чим більше тим небезпечніше)
+	danger = 1
+
+	crisp = [distance, enemy_condition, danger]
+
+	# результат від 1 до 5 (1 - рухатися назад, 3 - стояти на місці, 5 - рухатися вперед)
 	result = my_controller.get_result(crisp)
 
 	print(result)
